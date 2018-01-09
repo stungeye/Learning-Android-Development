@@ -16,7 +16,8 @@ A place to keep notes, links, code snippets, etc, while learning Android develop
 ## UI Design for Android
 
 * [Android Studio Layout Editor Docs](https://developer.android.com/studio/write/layout-editor.html)
-* [Android Layout Tutorial: Layouts and Animations](https://www.codementor.io/lintonye/android-ui-tutorial-layouts-and-animations-85jkhcblt) - 
+* [Android Layout Tutorial: Layouts and Animations](https://www.codementor.io/lintonye/android-ui-tutorial-layouts-and-animations-85jkhcblt)
+* [Build a Responsive UI with ConstraintLayout](https://developer.android.com/training/constraint-layout/index.html)
 
 ## Android Studio and Emulator
 
