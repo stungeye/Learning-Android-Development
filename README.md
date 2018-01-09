@@ -17,3 +17,7 @@ A place to keep notes, links, code snippets, etc, while learning Android develop
 ## UI Design for Android
 
 ## Android Studio and Emulator
+
+## Hybrid App Development
+
+* [My Mobile HTML5 Blog](http://mobilehtml5.stungeye.com/) - One man's quest to build mobile apps using only HTML5, CSS3, Javascript and Phonegap. ;)
