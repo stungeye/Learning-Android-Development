@@ -11,6 +11,7 @@ A place to keep notes, links, code snippets, etc, while learning Android develop
 ## Java Coding for Android
 
 * [My First Android App Repo](https://github.com/StungEye-RRC/First-Android-App/tree/master) - Built by following the official ["Build Your First App"](https://developer.android.com/training/basics/firstapp/index.html) tutorial.
+* [Treasure Trove of Android Code Samples](https://github.com/commonsguy/cw-omnibus/) - From the book [The Busy Coder's Guide to Android Development](https://commonsware.com/Android/).
 
 ## UI Design for Android
 
