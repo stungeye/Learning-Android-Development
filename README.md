@@ -12,6 +12,8 @@ A place to keep notes, links, code snippets, etc, while learning Android develop
 
 ## Java Coding for Android
 
+* [My First Android App Repo](https://github.com/StungEye-RRC/First-Android-App/tree/master) - Built by following the official ["Build Your First App"](https://developer.android.com/training/basics/firstapp/index.html) tutorial.
+
 ## UI Design for Android
 
 ## Android Studio and Emulator
