@@ -1,9 +1,7 @@
 # Learning-Android-Development
 A place to keep notes, links, code snippets, etc, while learning Android development.
 
-# Topic Areas
-
-## General Resource and Tutorials
+## General Resources and Tutorials
 
 * [Official Android Developer Site](https://developer.android.com/index.html) - Google's Official Developer Docs
 * [Awesome Android](https://github.com/JStumpp/awesome-android) - A curated list of awesome Android packages and resources.
