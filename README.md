@@ -16,7 +16,11 @@ A place to keep notes, links, code snippets, etc, while learning Android develop
 
 ## UI Design for Android
 
+* [Android Studio Layout Editor Docs](https://developer.android.com/studio/write/layout-editor.html)
+
 ## Android Studio and Emulator
+
+* [Android Studio User Guide](https://developer.android.com/studio/intro/index.html)
 
 ## Hybrid App Development
 
