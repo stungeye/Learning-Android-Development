@@ -33,7 +33,7 @@ A place to keep notes, links, code snippets, etc, while learning Android develop
 
 **2018-01-09** - I finished the "Your First App" tutorial after adding a second activity to the app. Somethings I learned today:
 
-* An [Activity](https://developer.android.com/guide/components/activities/index.html) is a single focused thing that a user can do. They are most often paired with a view. When an activity is triggered it's `onCreate` method is called. It's in this `onCreate` method that we load the associated view using `setContentView` which takes a resource ID. 
+* An [Activity](https://developer.android.com/guide/components/activities/index.html) is a single focused thing that a user can do. They are most often paired with a view. When an activity is triggered it's `onCreate` method is called. It's in this `onCreate` method that we load the associated view using `setContentView` which takes a resource ID. `onCreate` is but one method in the collection of [Activity Lifecycle](https://developer.android.com/guide/components/activities/activity-lifecycle.html) callback methods. 
 * The activities that make up an application are declared within the project manifest (`app\manifests\AndroidManifest.xml`). The activities in these manifest are linked to Java classes by way of the `android:name` element attribute. 
 * We send data between Activities using [Intents](https://developer.android.com/guide/components/intents-filters.html). An Intent can be used to start an activity within your app or to launch an acitivity in another app.
 * There is a class called `R` that we use to locate views (`R.layout.<layout_name>`) and ui items (`R.id.<ui_item_name>`) within views. 
