@@ -43,3 +43,10 @@ A place to keep notes, links, code snippets, etc, while learning Android develop
 * If at first Android Studio doesn't recognize a class we ALT-ENTER and import it. From Jody: Turning on "auto import" in Android Studio settings can be very handy. To do so, go to File - Settings - Editor - Auto Import and select "Optimize imports on the fly" as well as "Add unambiguous imports on the fly"
  
 I also bought the book [The Busy Coder's Guide to Android Development](https://commonsware.com/Android/). Yes, even with all the free online resources out there I'm still a sucker for a well researched book.
+
+**2018-01-17** - Spent some time looking over Jody's Demo App that he provides for assignment two. There were a few things that I didn't understand, so I sent him the following questions:
+
+*	What’s the difference (or downside/benefit) of implementing something like an on click handler in code (using `setOnClickListen`) versus from a layout onClick property? The demo appears to include code for both, although the onClick layout callback called `startOtherActivity` didn’t seem to be wired up.
+*	What’s the purpose of the `SharedPreference` code in the Main Activity? Or is there no real purpose beyond a quick demo of saving data to a `SharedPreference` and then immediately retrieving it?  
+*	Your code includes a comment asking why we don’t have to cast view widgets retrieved my `findViewById`. Why is that? 
+* Also, while I was researching `findViewById` I came across this blog post: [Say goodbye to findViewById. Say hello to Data Binding Library](https://inthecheesefactory.com/blog/say-goodbye-to-findviewbyid-with-data-binding-library/en)
