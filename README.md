@@ -29,7 +29,7 @@ A place to keep notes, links, code snippets, etc, while learning Android develop
 
 # Learning Android Developer Log
 
-**2018-01-08** - Created my first Android project ([following this tutorial](https://developer.android.com/training/basics/firstapp/index.html)) and configured Android Studio. This included setting up the emulator and associated Android SDK, as well as configuring the IDE to work with git and my Github account. I'm able to build the project and view the "Hello World" app in the emulator. I can also perform git commits and push to a Github repo (this one). Continuing with the tutorial I added a textbox and button to the UI using the Blueprint UI design view. The tutorial drifted a bit from what I was seeing in the editor here, but I was able to make things work. My initial thoughts on the UI editor is that looks very complicated but powerful. Next step for this tutorial is to open a new activity when the button I just added is clicked.
+**2018-01-08** - Created [my first Android project](https://github.com/StungEye-RRC/First-Android-App) ([following this tutorial](https://developer.android.com/training/basics/firstapp/index.html)) and configured Android Studio. This included setting up the emulator and associated Android SDK, as well as configuring the IDE to work with git and my Github account. I'm able to build the project and view the "Hello World" app in the emulator. I can also perform git commits and push to a Github repo (this one). Continuing with the tutorial I added a textbox and button to the UI using the Blueprint UI design view. The tutorial drifted a bit from what I was seeing in the editor here, but I was able to make things work. My initial thoughts on the UI editor is that looks very complicated but powerful. Next step for this tutorial is to open a new activity when the button I just added is clicked.
 
 **2018-01-09** - I finished the "Your First App" tutorial after adding a second activity to the app. Somethings I learned today:
 
@@ -50,3 +50,16 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
 *	What’s the purpose of the `SharedPreference` code in the Main Activity? Or is there no real purpose beyond a quick demo of saving data to a `SharedPreference` and then immediately retrieving it?  \[Answer: This was for demo purposes only. `SharePreference` is a simple key/value store for app settings.\]
 *	Your code includes a comment asking why we don’t have to cast view widgets retrieved my `findViewById`. Why is that? \[Answer: Android now uses a newer version of Java that support type inference this method.\]
 * Also, while I was researching `findViewById` I came across this blog post: [Say goodbye to findViewById. Say hello to Data Binding Library](https://inthecheesefactory.com/blog/say-goodbye-to-findviewbyid-with-data-binding-library/en) which introduces an interesting alternative to `findViewById` for accessing view widgets.
+
+**2018-01-23** - Almost done assignment three which focuses on layouts. [My repo can be found here](https://github.com/StungEye-RRC/Android-Layout-Practice). Thoughts and questions:
+
+* The linear layout is by far the easiest to work with. I still haven't groked the chains and springs in the constraint layout.
+* I tried to build a nested layout (a horizontal linear layout within a vertical linear layout) but I couldn't seem to access the UI elements within the nested layout using `findViewById`. I tried to find the nested layout first and then use that to find the elements, but that didn't work either. The following doesn't error in any way, but I can't set an `onClick` on `showStaticHTMLButton`:
+
+      setContentView(R.layout.activity_with_web_view); 
+      LinearLayout ll = findViewById(R.id.webviewButtons); // This layout is nested within the inflated content view.
+      showStaticHTMLButton = ll.findViewById(R.id.staticHTMLButton); // This button is nested in the linear layout ll.
+
+* When firing off a `Toast` within an anonymous click handler the first argument to `Toast.makeText` is the current context. I tried `this` but that didn't work, instead I had to do `ActivityWithRelativeLayout.this` where `ActivityWithRelativeLayout` is the Activity class within which the anonymous click handler was defined. I haven't used `this` in Java before as a property of a class. What's up with this? 
+* Working with WebViews is pretty slick. Next up I'm going to try to load the HTML and an image from a resource folder.
+
