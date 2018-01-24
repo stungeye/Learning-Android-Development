@@ -51,7 +51,7 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
 *	Your code includes a comment asking why we don’t have to cast view widgets retrieved my `findViewById`. Why is that? \[Answer: Android now uses a newer version of Java that support type inference this method.\]
 * Also, while I was researching `findViewById` I came across this blog post: [Say goodbye to findViewById. Say hello to Data Binding Library](https://inthecheesefactory.com/blog/say-goodbye-to-findviewbyid-with-data-binding-library/en) which introduces an interesting alternative to `findViewById` for accessing view widgets.
 
-**2018-01-23** - Almost done assignment three which focuses on layouts. [My repo can be found here](https://github.com/StungEye-RRC/Android-Layout-Practice). Thoughts and questions:
+**2018-01-23** - Almost done assignment three which focuses on [layouts](https://developer.android.com/guide/topics/ui/declaring-layout.html#CommonLayouts). [My repo can be found here](https://github.com/StungEye-RRC/Android-Layout-Practice). Thoughts and questions:
 
 * The linear layout is by far the easiest to work with. I still haven't groked the chains and springs in the constraint layout.
 * I tried to build a nested layout (a horizontal linear layout within a vertical linear layout) but I couldn't seem to access the UI elements within the nested layout using `findViewById`. I tried to find the nested layout first and then use that to find the elements, but that didn't work either. The following doesn't error in any way, but I can't set an `onClick` on `showStaticHTMLButton`:
