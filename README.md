@@ -59,8 +59,10 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
       setContentView(R.layout.activity_with_web_view); 
       LinearLayout ll = findViewById(R.id.webviewButtons); // This layout is nested within the inflated content view.
       showStaticHTMLButton = ll.findViewById(R.id.staticHTMLButton); // This button is nested in the linear layout ll.
+  
+  \[Answer: No need to find the buttons in a nested way. The problem wasn't actually the buttons anyway, it was the layout. The nested linear layout had a height of `match_parent` which meant it was covering the WebView.\]
 
-* When firing off a `Toast` within an anonymous click handler the first argument to `Toast.makeText` is the current context. I tried `this` but that didn't work, instead I had to do `ActivityWithRelativeLayout.this` where `ActivityWithRelativeLayout` is the Activity class within which the anonymous click handler was defined. I haven't used `this` in Java before as a property of a class. What's up with this? 
+* When firing off a `Toast` within an anonymous click handler the first argument to `Toast.makeText` is the current context. I tried `this` but that didn't work, instead I had to do `ActivityWithRelativeLayout.this` where `ActivityWithRelativeLayout` is the Activity class within which the anonymous click handler was defined. I haven't used `this` in Java before as a property of a class. What's up with this? \[Answer: This is how you get to the `this` of the enclosing object of the specified class.\]
 * Working with WebViews is pretty slick. Next up I'm going to try to load the HTML and an image from a resource folder.
 
 **2018-01-24** - Continuing my work on [assignment three, layouts](https://github.com/StungEye-RRC/Android-Layout-Practice). 
@@ -68,4 +70,4 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
 * Items for spinners can be stored in resource XML files as `item` elements with a `string-array` element with a `name` attribute. [See xml](https://github.com/StungEye-RRC/Android-Layout-Practice/blob/master/app/src/main/res/values/planet_spinner.xml) and associated [code](https://github.com/StungEye-RRC/Android-Layout-Practice/blob/master/app/src/main/java/com/stungeye/assignmentthree_ui/ActivityWithRelativeLayout2.java#L33).
 * When a user selects an item from a spinner the returned value of `spinner.getItemAtPosition(pos)` within the `onItemSelected` handler is the type of data that was loaded into the spinner in the first place. In this case I loaded Strings, so I can retrieve the data like: `String selectedPlanet = (String)spinner.getItemAtPosition(pos);`
 * Note to self: Don't forget to chain `show()` on to `Toast.makeText` calls. :)
-* I'm finding [programcreek.com/](https://www.programcreek.com/) helpful for finding snippets of example code for parts of the Android API that I can't make sense of from the developer docs.
+* I'm finding [programcreek.com](https://www.programcreek.com/) and [stacktips.com/topics/tutorials/android](http://stacktips.com/topics/tutorials/android) helpful for finding snippets of example code for parts of the Android API that I can't make sense of from the developer docs. Using a google site search works nicely here. For example: [site:https://www.programcreek.com android alertdialog](https://www.google.com/search?q=site%3Ahttps%3A%2F%2Fwww.programcreek.com+android+alertdialog)
