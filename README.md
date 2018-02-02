@@ -71,3 +71,13 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
 * When a user selects an item from a spinner the returned value of `spinner.getItemAtPosition(pos)` within the `onItemSelected` handler is the type of data that was loaded into the spinner in the first place. In this case I loaded Strings, so I can retrieve the data like: `String selectedPlanet = (String)spinner.getItemAtPosition(pos);`
 * Note to self: Don't forget to chain `show()` on to `Toast.makeText` calls. :)
 * I'm finding [programcreek.com](https://www.programcreek.com/) and [stacktips.com/topics/tutorials/android](http://stacktips.com/topics/tutorials/android) helpful for finding snippets of example code for parts of the Android API that I can't make sense of from the developer docs. Using a google site search works nicely here. For example: [site:https://www.programcreek.com android alertdialog](https://www.google.com/search?q=site%3Ahttps%3A%2F%2Fwww.programcreek.com+android+alertdialog)
+
+**2018-01-31** - Started the calculator assignment.
+
+* You can assign the `onClick` for multiple buttons to a single method. The view passwed into the method is the button that was click you can fetch it's id using `view.getID()`.
+* In previous apps I had been using startActivityForResult when I only needed to call startActivity. I only realized this now that I need to return a result from an actiity.
+
+**2018-02-01** - Continuing the calculator assignment.
+
+* I was missing my vim keybindings so I install the [IdeaVim plugin](https://github.com/JetBrains/ideavim). Works nicely.
+* Started working with Shared Preferences which is a nice way to save app-level key/value pairs that persist across activities and the full activity life-cycle.
