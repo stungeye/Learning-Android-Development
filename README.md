@@ -81,3 +81,7 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
 
 * I was missing my vim keybindings so I install the [IdeaVim plugin](https://github.com/JetBrains/ideavim). Works nicely.
 * Started working with Shared Preferences which is a nice way to save app-level key/value pairs that persist across activities and the full activity life-cycle.
+
+**2018-02-22** - Completing the calculator assignment.
+
+* Part of the assignment asks for string values of two text edit widgets to be returned to the main activity when the user presses up/home or the HW back button. I accomplished this by opening the activity using `startActivityForResult` and implementing the `onActivityResult` callback in the main activity. In most cases with `startActivityForResult` results are returned from an activity after the user clicks a button, and then `setResult` is called from the button click callback. I had to mess around a bit to have `setResult` triggered by back and up. Back was pretty straight forward, I overrided the `onBackPressed` callback. For up I had to override `onOptionsItemSelected` and then check if it was the home button being pressed. If so I call `onBackPressed` and force an early return. [See code](https://github.com/StungEye-RRC/Android-User-Prefs-and-Activity-Results/blob/master/app/src/main/java/com/stungeye/calculator/CalendarActivity.java#L38)
