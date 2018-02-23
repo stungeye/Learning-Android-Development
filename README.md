@@ -97,3 +97,9 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
 * Minor issue when implememting the "My Location Layer" on the Google Map. After enabling location permissions for the first time the "My Location" button doesn't re-centre the screen on the location. However, if you close the app and start it again the button works. Tried tracing code with the debugger put I couldn't locate the problem.
 
 * Instead of baseing the RSS assignment off a SAX parser I wanted to use an established RSS library. Some options include [prof18/RSS-Parser](https://github.com/prof18/RSS-Parser), [crazyhitty/Rss-Manager](https://github.com/crazyhitty/Rss-Manager?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=2954) and [rometools/rome](https://github.com/rometools/rome). Rome looks like the most established library to start it can be used with the standard Java `Url` class, but for a more robust HTTP solution I'll likely add a dependency to [Ion](https://github.com/koush/ion), [OkHTTP](https://square.github.io/okhttp/) or [Volley](https://github.com/google/volley). 
+
+* Decided to try the Rome RSS reader. It's [hosted as a Maven repo](https://mvnrepository.com/artifact/com.rometools/rome). Started a new Android project and added the following to the app `build.gradle` file in the `dependencies` block:
+
+    `compile group: 'com.rometools', name: 'rome', version: '1.9.0'`
+    
+* I've got a sample app going with an Async task to load up a feed using Rome. The problem right now is that I keep getting an "unknown host" IOException thrown when a try to load *any* URL. Something to continue debugging another day!
