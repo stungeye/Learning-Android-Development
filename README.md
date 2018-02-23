@@ -89,3 +89,11 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
 * For the birthday selection I used a `DatePickerDialog` with the context activity implementing the `OnDateSet` listener. [See code](https://github.com/StungEye-RRC/Android-User-Prefs-and-Activity-Results/blob/master/app/src/main/java/com/stungeye/calculator/CalendarActivity.java#L48).
 
 * In order to import a colour image to use as a custom google map marker I needed to use a plugin. Without the plugin, images imported using the standard asset studio get their colour stripped out. The plugin I used was the [Android Drawable Importer](http://www.javahelps.com/2015/02/android-drawable-importer.html). 
+
+* Created an app bar using xml action menu. [See app bar code](https://github.com/stungeye/Android-Google-Maps/blob/master/app/src/main/java/com/example/mapwithmarker/MapsMarkerActivity.java#L44). [See xml menu](https://github.com/stungeye/Android-Google-Maps/blob/master/app/src/main/res/menu/actions.xml). A++++ Straight Foward! Would app bar menu again.
+
+**2018-02-23** - Completing the Google Maps assignment. Starting the RRS assignment.
+
+* Minor issue when implememting the "My Location Layer" on the Google Map. After enabling location permissions for the first time the "My Location" button doesn't re-centre the screen on the location. However, if you close the app and start it again the button works. Tried tracing code with the debugger put I couldn't locate the problem.
+
+
