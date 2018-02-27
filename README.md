@@ -103,3 +103,9 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
     `compile group: 'com.rometools', name: 'rome', version: '1.9.0'`
     
 * I've got a sample app going with an Async task to load up a feed using Rome. The problem right now is that I keep getting an "unknown host" IOException thrown when a try to load *any* URL. Something to continue debugging another day!
+
+**2018-02-26** - Continuing work on the RSS assignment
+
+* The unknown host IOException I was getting on Friday was due to the Android emulator not being properly connected to the internet. For some reason I had to go into the emulated device settings and complete the Wifi setup process. This solved the problem with the code, but also points to the fact that I should be checking for connectivity before trying to load any URLs. 
+
+* I've now got a single RSS feed loading and I'm displaying all the feed titles within a ListView activity. The odd thing with the ListView is that it doesn't show an appbar. Turns out that in AppCompact mode I need to use a AppCompact Activity and have it load up a ListView Fragment instead. [See Related Stack Overflow Question](https://stackoverflow.com/questions/20524008/combining-listactivity-and-actionbaractivity/20528156)
