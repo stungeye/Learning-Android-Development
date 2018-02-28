@@ -123,3 +123,10 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
       }
       
 * I've got the feed items loading up in a `WebView` on click. Working nicely. Now I have to work on a main list view for where the user can select amongst multiple feeds. I also want better exception handling throughout the app. A custom list item for feeds that include images might be nice too. A progress bar would be nice when loading the webview too.
+
+**2018-02-28** - Continuing work on the RSS assignment / Winnipeg New App
+
+* I've got the progress bar going for the webview. I'm using an indeterminant horizontal progress bar which I hide once the webview is loaded. I did this be overriding the `onPageFinished` callback of my webview's `WebViewClient`. 
+
+* Currently I'm trying to figure out why my listview is re-created (causing the RSS feed to be refetched) after I use the up button from the webview, where it's not re-created if I use the HW back button. (The answer was to set the parent activity's `launchMode` to `singleTop` in the manifest. [Details here](https://developer.android.com/training/implementing-navigation/ancestral.html).
+
