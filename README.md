@@ -108,4 +108,18 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
 
 * The unknown host IOException I was getting on Friday was due to the Android emulator not being properly connected to the internet. For some reason I had to go into the emulated device settings and complete the Wifi setup process. This solved the problem with the code, but also points to the fact that I should be checking for connectivity before trying to load any URLs. 
 
-* I've now got a single RSS feed loading and I'm displaying all the feed titles within a ListView activity. The odd thing with the ListView is that it doesn't show an appbar. Turns out that in AppCompact mode I need to use a AppCompact Activity and have it load up a ListView Fragment instead. [See Related Stack Overflow Question](https://stackoverflow.com/questions/20524008/combining-listactivity-and-actionbaractivity/20528156)
+* I've now got a si ngle RSS feed loading and I'm displaying all the feed titles within a ListView activity. The odd thing with the ListView is that it doesn't show an appbar. Turns out that in AppCompact mode I need to use a AppCompact Activity and have it load up a ListView Fragment instead. [See Related Stack Overflow Question](https://stackoverflow.com/questions/20524008/combining-listactivity-and-actionbaractivity/20528156)
+
+**2018-02-27** - Continuing work on the RSS assignment
+
+* The ListView Fragment worked really nicely. I also added a progress spinner when loading the feed. At first I used a `ProgressDialog` but then I realized that it's been deprecated. So now I'm just turning on the built in spinner for the listview by using `setListShow(false)`. 
+
+* I also added a check for network connectivity:
+
+      private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null && activeNetwork.isConnected();
+      }
+      
+* I've got the feed items loading up in a `WebView` on click. Working nicely. Now I have to work on a main list view for where the user can select amongst multiple feeds. I also want better exception handling throughout the app. A custom list item for feeds that include images might be nice too. A progress bar would be nice when loading the webview too.
