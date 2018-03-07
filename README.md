@@ -136,6 +136,7 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
 
 * I'm now testing for internet connectivity in multiple places. To do this I extracted my `isNetworkConnected()` into a helper class and made it a static method. In the same class I've made a static method to display a "No Internet" alert dialog.
 
-
-
-
+* Work still to be done before I can release the app to the Play store:
+    * Welcome message for new users and a different one for upgrading users. Message displayed once.
+    * About page with information about the app and me.
+    * Feedback form via embedded Google Drive Form?
