@@ -130,13 +130,20 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
 
 * Currently I'm trying to figure out why my listview is re-created (causing the RSS feed to be refetched) after I use the up button from the webview, where it's not re-created if I use the HW back button. (The answer was to set the parent activity's `launchMode` to `singleTop` in the manifest. [Details here](https://developer.android.com/training/implementing-navigation/ancestral.html).
 
-**2018-03-28** - Continuing work on the RSS assignment / Winnipeg New App
+**2018-02-28** - Continuing work on the RSS assignment / Winnipeg News App
 
 * Because I plan to launch this app to the app store I wanted a user friendly way to monitor my exception and app crashes. I've decided to test out [BugSnag](http://bugsnag.com) integration. Setup and integration was really simple. All caught and uncaught exceptions are now being funneled to BugSnap. I'll probably set up a Slack channel so that I can get exception notifications via Slack.
 
 * I'm now testing for internet connectivity in multiple places. To do this I extracted my `isNetworkConnected()` into a helper class and made it a static method. In the same class I've made a static method to display a "No Internet" alert dialog.
 
 * Work still to be done before I can release the app to the Play store:
-    * Welcome message for new users and a different one for upgrading users. Message displayed once.
-    * About page with information about the app and me.
-    * Feedback form via embedded Google Drive Form?
+    * Welcome message for new users. Message displayed once. (done)
+    * About page with information about the app and me. (done)
+    * Feedback form via embedded Google Drive Form (done)
+
+**2018-03-13** - Continuing work on the Winnipeg News App
+
+* I've completed all the tasks that I wanted to finish before releasing the app to the Play store. 
+
+* I just have to figure out the processing of building a keystore signed app for Play store publication. Luckily I still have the keystore I used to sign my Cordova versions of the Winnipeg News App, otherwise I wouldn't be able to publish this as a new version of the old app.
+
