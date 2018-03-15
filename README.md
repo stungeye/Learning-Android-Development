@@ -147,3 +147,13 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
 
 * I just have to figure out the processing of building a keystore signed app for Play store publication. Luckily I still have the keystore I used to sign my Cordova versions of the Winnipeg News App, otherwise I wouldn't be able to publish this as a new version of the old app.
 
+**2018-03-15** - Releasing Winnipeg News App to Play Store
+
+* The app has been released to the Play store with a 100% update rollout. So far it seems like the rollout is going well.
+
+* I left the old Cordova APK in place for older phones (phones with Android < 4.1) but I might end up pulling this APK because a number of the feeds are broken. Users with the old APK on their phones will not be affected, but if pulled I won't get any new users with older phones. I'm fine with this considering that less than 2% of my current users are using Android 4.0 or lower. 
+
+* Note to self: The font I used for the app icon is [Sonsie One](https://fonts.google.com/specimen/Sonsie+One).
+
+* Another to self: My Winnipeg News keystore has a two passwords on it. A store pass and a key pass.
+
