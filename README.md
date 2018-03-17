@@ -180,7 +180,7 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
           mv Sdk/emulator/lib64/libstdc++/libstdc++.so.6 Sdk/emulator/lib64/libstdc++/libstdc++.so.6.bak
           ln -s /usr/lib64/libstdc++.so.6 Sdk/emulator/lib64/libstdc++/
           
-    * Android Studio seems to be running fine using OpenJDK, but I've heard it could run better with the Oracle JDK. Something to try:
+    * I've heard that Android Studio runs better with the Oracle JDK vs the default Open JDK:
     
           trizen -s jdk
           sudo archlinux-java set java-x-jdk (Where x is the major version of the jdk you installed)
