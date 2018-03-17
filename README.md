@@ -157,3 +157,16 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
 
 * Another to self: My Winnipeg News keystore has a two passwords on it. A store pass and a key pass.
 
+**2018-03-17** - Refining Winnipeg News App
+
+* I want to start adding images to the news app starting with logos for the news sources. 
+
+* To obtain the logo I'm using the [Clearbit free Logo API](https://clearbit.com/logo) and I'm storing all the Clearbit logo URLs in the same XML as the RSS feed URLs.
+
+* To load the logo images I will be using [the Picasso library developed by Square](https://github.com/square/picasso). This library makes loading images into an `ImageView` a snap, and it also handles caching the images to memory and disk automatically.
+
+      Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(someImageView);
+      
+* I also need to implement a custom list view item layout (image and text) to use with my `ListView`s.
+
+* Once I get the logos work I'll work on loading images from the RSS feeds (if provided).
