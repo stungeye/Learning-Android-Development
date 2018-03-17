@@ -157,6 +157,29 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
 
 * Another to self: My Winnipeg News keystore has a two passwords on it. A store pass and a key pass.
 
+**2018-03-16** - Setting up Android Studio at Home
+
+* I installed Android Studio and the emulator at home on my [Manjaro Linux](https://manjaro.org/) laptop. I had to do the following to get things working:
+
+    * Install the [trizen AUR package manager](https://github.com/trizen/trizen) using a git clone:
+    
+          git clone https://aur.archlinux.org/trizen.git
+          cd trizen/
+          makepkg -si
+    
+    * Install Android Studio from the AUR: `trizen -S android-studio`
+    
+    * Install an Android Emulator by first changing the default tmp folder which was too small:
+    
+          mkdir /home/stungeye/tmp
+          Android Studio => Help => Edit Custom VM Options
+          Add to file: -Djava.io.tmpdir=/home/stungeye/tmp
+
+    * Force the emulator to use one of the sytem libraries rather than it's own due to "[unable to load driver i965_dri.so](https://bbs.archlinux.org/viewtopic.php?id=213192)"
+    
+          mv Sdk/emulator/lib64/libstdc++/libstdc++.so.6 Sdk/emulator/lib64/libstdc++/libstdc++.so.6.bak
+          ln -s /usr/lib64/libstdc++.so.6 Sdk/emulator/lib64/libstdc++/
+
 **2018-03-17** - Refining Winnipeg News App
 
 * I want to start adding images to the news app starting with logos for the news sources. 
