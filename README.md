@@ -198,3 +198,13 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
 * I also need to implement a custom list view item layout (image and text) to use with my `ListView`s.
 
 * Once I get the logos work I'll work on loading images from the RSS feeds (if provided).
+
+**2018-03-27** - Exceptional Exceptions
+
+* I paused work on the image loading to review the exceptions that are being logged by in production via Bugsnag.
+
+* There have been 4 unhandled exceptions (which would have crashed the app) and a large number of handled exceptions (which would have resulted in a poor user experience).  I decided to sort these exceptions by the number of times they occured and try to address the top ten. Of the top ten 2 were unhandled (crashes!) and 8 were handled. 
+
+* The two unhandled excepts were the direct result of trying to access resources before they were ready. In both cases the code was trying to access an Activity/View before it had been fully created. Life-cycle issues. In one case an early press of a menubar option would trigger a network connectivity test via a null `Activity`. In the other case an Async task was trying to update a view fragment that wasn't yet ready. Both problems were addressed with guard conditions and a bit of a rejigging of when/where code was added to the various activity lifecycles.
+
+* Most of the handled exceptions were centred around retrieval and parsing of RSS feeds. Unkown host exceptions, connection exceptions, socket exceptions, SSL handshaking / certificate exceptions, XML and feed parsing exceptions... In most of these cases I was able to trace the problem down to captive WiFi hotspots. By this I mean Wifi hotspots where you need to login via a web browser before you can use the network. The problem with these is that you can partially connect to them (when you see a ! beside your wifi indicator). In this pre-logged-in-to-hotspot state Android's connectivity tester will show that a network is present and therefore my app will attempt to download and parse RSS feeds. Behind the scenes, however, the HTTP request to the RSS feed will be silently redirect to a wifi login screen. My app will only see an HTTP 200 OK, and either get a certificate error (if using https) or will take the login page for the RSS XML and try to parse it. Solved this problem with more robust network connectivity testing and the disabling of auto-following redirects. The downside of this is if one of the feed URLs gets changed and the news orgs puts a rediret into place. In this case the app will need to be updated with the new feed URL.
