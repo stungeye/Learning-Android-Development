@@ -199,7 +199,7 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
 
 * Once I get the logos work I'll work on loading images from the RSS feeds (if provided).
 
-**2018-03-27** - Exceptional Exceptions
+**2018-03-27** - Winnipeg NEws Exceptional Exceptions 
 
 * I paused work on the image loading to review the exceptions that are being logged by in production via Bugsnag.
 
@@ -208,3 +208,17 @@ I also bought the book [The Busy Coder's Guide to Android Development](https://c
 * The two unhandled excepts were the direct result of trying to access resources before they were ready. In both cases the code was trying to access an Activity/View before it had been fully created. Life-cycle issues. In one case an early press of a menubar option would trigger a network connectivity test via a null `Activity`. In the other case an Async task was trying to update a view fragment that wasn't yet ready. Both problems were addressed with guard conditions and a bit of a rejigging of when/where code was added to the various activity lifecycles.
 
 * Most of the handled exceptions were centred around retrieval and parsing of RSS feeds. Unkown host exceptions, connection exceptions, socket exceptions, SSL handshaking / certificate exceptions, XML and feed parsing exceptions... In most of these cases I was able to trace the problem down to captive WiFi hotspots. By this I mean Wifi hotspots where you need to login via a web browser before you can use the network. The problem with these is that you can partially connect to them (when you see a ! beside your wifi indicator). In this pre-logged-in-to-hotspot state Android's connectivity tester will show that a network is present and therefore my app will attempt to download and parse RSS feeds. Behind the scenes, however, the HTTP request to the RSS feed will be silently redirect to a wifi login screen. My app will only see an HTTP 200 OK, and either get a certificate error (if using https) or will take the login page for the RSS XML and try to parse it. Solved this problem with more robust network connectivity testing and the disabling of auto-following redirects. The downside of this is if one of the feed URLs gets changed and the news orgs puts a rediret into place. In this case the app will need to be updated with the new feed URL.
+
+Here are the steps required to rebuild a signed version of the APK for Play store release:
+
+* Update the `versionCode` (int) and the `versionName` (string) to the next version. These can be found in your `build.gradle` file or your manifest. For me the are in the Module level `build.gradle` file.
+* Change the build variant from `debug` to `release`. I do this in a "Build Variants" window below my project navigator. This widget wasn't always there and I'm not sure how I made it appear. Perhaps it was "Build" => "Build Variants..."
+* Build => Generate Signed APK.
+* Ensure that the key store path points to your keystore file. Ensure you enter the correct key alias, key store password, and key password. I used the same value for both passwords. And FYI my key alias is `meowreader`. :P
+* Ensure that you are using V1 and V2 Signature versions.
+* Note the output path and generate the release.
+* Sign-in to the Google Play Console, select the app, select "Release Management" then "App Releases" then "Manage Production".
+* Click the "Create Release" button. 
+* Upload APK, select which legacy APKs (if any) to retain, and write release notes.
+* Review release and select percentage of devices to roll out to. (I usually just go with 100%).
+
