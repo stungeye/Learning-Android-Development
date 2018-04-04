@@ -222,3 +222,10 @@ Here are the steps required to rebuild a signed version of the APK for Play stor
 * Upload APK, select which legacy APKs (if any) to retain, and write release notes.
 * Review release and select percentage of devices to roll out to. (I usually just go with 100%).
 
+**2018-04-14** - Night Mode for Winnipeg News
+
+* Working on implementing a dark theme or a "night mode" for the Winnipeg News app using  `Theme.AppCompat.DayNight`. [Details]().
+
+* While implementing this feature I also refactored how I was working with `SharedPreference`s and built a singleton helper class to make working with shared prefs easier. This also meant refactoring how I detect and display different welcome messages for new and upgraded users.
+
+* Another thing I was working on was solving a few more of the exceptions I was seeing in the wild. The most interesting being `android.os.TransactionTooLargeException` which was happening when I was trying to save activity state when webviews were being paused or stopped. The only reason I had the webviews attempt to save their state (rather than say reload on orientation chanage) was for the google form I'm using for feedback. So now I only preserve state for the feedback form. A bit of a hacky solution, but it'll do. Eventually I'll change the feedback mechanism to a native android form and remove the need to preserve webview state entirely. 
