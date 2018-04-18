@@ -267,4 +267,4 @@ Here are the steps required to rebuild a signed version of the APK for Play stor
             listView.setItemChecked(position, feedItem.active());
         }
 
-* Lastly I needed a way to persist these settings. I ened up using Shared Preferences. At first I tried to figure out a way to store a Map of booleans where the keys were the news source names, but Shared Preferences doesn't like storing complex data types. Then I realized that a share pref was just a map itself, so I made a standalone shared pref file (within my existing shared prefs singleton helper) to store these seetings. 
+* Lastly I needed a way to persist these settings. I ened up using Shared Preferences. At first I tried to figure out a way to store a Map of booleans where the keys were the news source names, but Shared Preferences doesn't like storing complex data types. Then I realized that a share pref was just a map itself, so I made a standalone shared pref file (within my existing shared prefs singleton helper) to store these settings. 
