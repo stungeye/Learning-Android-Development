@@ -236,4 +236,35 @@ Here are the steps required to rebuild a signed version of the APK for Play stor
 
 * When adding the news sources logos as images to the project I added them in various sizes to support the varying pixel densities of different Android devices. I wanted each icon to display in a 50dp (dp = device independent pixels) ImageView. Android's baseline pixel density is mdpi mode (~160dpi). Based on my research it's best to include high density versions all app images and let Android auto-scale for lower densities. I provided images for Androids xhdpi (2 times mdpi), xxhdpi (3 times mdpi) and xxxhdpi (4 times mdpi). Since I wanted the baseline imagine to be 50px, the logos I put in the `res/xhdpi` folder were 100px, the images in the `res/xxhdpi` were 150px, and 200px images in the `res/xxxhdpi` folder. I manually resized the images. I used the [Clearbit Logo API](https://clearbit.com/logo) to find the logos.
 
-* I'm going to review my latest batch of BugSnag exceptions and then push a new version of the app live tomorrow.
+
+
+**2018-04-17** - Enabling/Disabling News Sources
+
+* Oh boy, this was a Yak shaving session, but it turned out okay in the end. Based on user feedback I wanted a way for users to be able to select which news sources would be displayed on the home screen. I initially envisonage this "manage feeds" page as being a list view (similar to the home screen) with news logo and name, and then on the right a checkbox or toggle switch. I already had a ListFragment for the home screen that I wanted to repurpose as it already used a custom list item layout and a custom array adaptor. Here's what I did:
+
+* I could have created my own way of handling checkable lists, but it turns out that Android already includes ui elements that implement a `Checkable` interface. When I looked at the default layout for checkable lists [android.R.layout.simple_list_item_multiple_choice](https://android.googlesource.com/platform/frameworks/base/+/master/core/res/res/layout/simple_list_item_multiple_choice.xml) it's a single `CheckableTextView` element. My existing layout for list items on the home screen was a `LinearLayout` with an `ImageView` for the news logo and a `TextView` for the news source name. Since I wanted to leverage Android's existing support I needed to simplify my custom layout. Turns out all I needed was a `CheckableTextView` since `TextView`s already support inline images. I just had to use  `textViewElement.setCompoundDrawablesWithIntrinsicBounds()` within my custom array adapator when populating list items.
+
+* With my checkable textview in place I needed some way to use this list view once without checkmarks for the home screen and once with checkmarks for the manage feeds screen. Luckily I implemented the list view as a `Fragment` so I figure I could just sub-class it, but it turns out that Fragment constructors must be empty! So, no overloading the constructor to pass in a boolean to control the presence of checkmarks. The best practice I turned up for handling this was to add a static "Fragment Factor" method to the Fragment class that accepted `Bundle` arguments and returned an instance of the fragment:
+
+      public static FeedView newInstance(boolean checkmode_active) {
+          FeedView fragment = new FeedView();
+          final Bundle args = new Bundle(1);
+          args.putBoolean(EXTRA_CHECKMODE, checkmode_active);
+          fragment.setArguments(args);
+          return fragment;
+      }
+
+* Within the fragments `onViewCreated` I use this boolean flag to see the `ListView`'s choice mode (`CHOICE_MODE_MULTIPLE` vs `CHOICE_MODE_NONE`). I also use the flag within the fragments `onListItemClick` callback to change the behaviour of list clicks for the home screen vs the manage feeds activity.
+
+* Next I had to update my POJO FeedItem class that I use as the model objects for my custom array adaptor. This class holds the name, logo drawable and url for each news source item. I added a boolean `active` property as well. Now within the custom array adaptor, when populating list items, I can check the choice mode (`setCheckMarkDrawable(null)` if we are supressing checkmarks) and set the item checked based on this flag. Strangely I couldn't set the item checked directly but instead I had to go to it's parent (avaiable as the third arg `parent` in the adapators `getView`):
+
+        ListView listView = (ListView)parent;
+
+        if (listView.getChoiceMode() == ListView.CHOICE_MODE_NONE) {
+            viewHolder.newsSourceName.setCheckMarkDrawable(null);
+        } else {
+            // Using setChecked on viewHolder.newsSourceName didn't work!
+            listView.setItemChecked(position, feedItem.active());
+        }
+
+* Lastly I needed a way to persist these settings. I ened up using Shared Preferences. At first I tried to figure out a way to store a Map of booleans where the keys were the news source names, but Shared Preferences doesn't like storing complex data types. Then I realized that a share pref was just a map itself, so I made a standalone shared pref file (within my existing shared prefs singleton helper) to store these seetings. 
