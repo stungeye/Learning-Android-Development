@@ -268,3 +268,18 @@ Here are the steps required to rebuild a signed version of the APK for Play stor
         }
 
 * Lastly I needed a way to persist these settings. I ened up using Shared Preferences. At first I tried to figure out a way to store a Map of booleans where the keys were the news source names, but Shared Preferences doesn't like storing complex data types. Then I realized that a share pref was just a map itself, so I made a standalone shared pref file (within my existing shared prefs singleton helper) to store these settings. 
+
+**2018-04-25** - Cordova Exploration
+
+* After spending the term exploring Native Android development I thought I'd spend a few days reaquainting myself with [Cordova hybrid development](https://cordova.apache.org/). Specifically, I plan on redeveloping [my Meow Reader app](https://play.google.com/store/apps/details?id=com.stungeye.meowreader), which pulls images from the Tumblr API.
+
+* Started by following [the Cordova "Your First App" guide](https://cordova.apache.org/docs/en/latest/guide/cli/index.html).
+
+* I'm using VS Code as my editor along with the "Cordova Tools" extension.
+
+Some of the differences I've noticed since I last dabbled in Cordova development:
+
+* The tooling is much nicer. This includes the Cordova CLI but also the above mentioned VS Code extension, which allows for in-editor debugging of the app using adb.
+
+* WebView click delays may no longer be an issue if zooming is disable and the width is set to the device-width in the viewport meta tag. [details](https://www.sitepoint.com/5-ways-prevent-300ms-click-delay-mobile-devices/)
+
