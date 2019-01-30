@@ -283,3 +283,22 @@ Some of the differences I've noticed since I last dabbled in Cordova development
 
 * WebView click delays may no longer be an issue if zooming is disable and the width is set to the device-width in the viewport meta tag. [details](https://www.sitepoint.com/5-ways-prevent-300ms-click-delay-mobile-devices/)
 
+**2019-01-30** - One Year Later
+
+My hard drive on my work laptop died last month. At first I thought I lost the source to the Winnipeg News App (along with the crypto signing key). Luckily I was able to recover both. I had forgotten that I had bitbucket set up as a private git remote. Yay!
+
+Anyway, I install Android Studio to my new laptop and loaded up the project source. Android Studio prompted me to upgraded my version of gradle as well a few of my dependencies. The edits were:
+
+* In `\gradle\wrapper\gradle-wrapper.properties` I updated the `distributionURL` to point to `gradle-4.10.1-all.zip`
+* In `\build.gradle` the dependencies classpath needed to be updated to `com.android.tools.build:gradle:3.3.0`
+* In `\app\build.gradle` the `compileSdkVersion` and `targetSdkVersion` got bumped from 26 to 27 (even though 28 is available... more on that later) and then in the `dependencies` the `com.android.support:appcompat` library was bumbed to `v7:27.1.1`.
+
+I tried bumping the SDK to version 28, but there were a bunch of deprecations and breaking changes so I rolled back to 27. 
+
+Some things to look into when I eventually move to version 28:
+
+* Cleartext http is no longer supported by default. This is a problem since some RSS feeds and news sources still use http instead of https. 
+* `ListFragment` and `getFragmentManager` have been moved to `androidx` / Jetpack support libraries.
+
+There is also a new way to build and release apps called [Android App Bundles](https://developer.android.com/guide/app-bundle/) that I am going to look into, as well as the potential for the app to be an [Instant-Enabled App](https://developer.android.com/topic/google-play-instant/getting-started/instant-enabled-app-bundle). 
+
