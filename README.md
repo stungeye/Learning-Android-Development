@@ -302,3 +302,17 @@ Some things to look into when I eventually move to version 28:
 
 There is also a new way to build and release apps called [Android App Bundles](https://developer.android.com/guide/app-bundle/) that I am going to look into, as well as the potential for the app to be an [Instant-Enabled App](https://developer.android.com/topic/google-play-instant/getting-started/instant-enabled-app-bundle). 
 
+**2019-01-30** - App Bundle Internal Test Release
+
+I setup and built an Android App Bundle for the Winnipeg News App. This meant exporing my private signing key from my keystore file and uploading it to the Play Dev Console. The Play Console will now manage APK generation for me. I just have to upload signed App Bundles.
+
+I then set myself up as a internal tester for the app and uploaded the app bundle for an internal test track release. The hope is that it will now be automatically deployed to my phone, but not yet deployed to the rest of my users. Fingers crossed.
+
+I also updated my use of the Bugsnag API so that when FeedException or IOException are thrown when parsing an RSS feed the feedURL is added a metadata when notifying Bugsnag:
+
+        Bugsnag.notify(e, new Callback() {
+            @Override
+            public void beforeNotify(Report report) {
+                report.getError().getMetaData().addToTab("user", "feedURL", feedUrl);
+            }
+        });
