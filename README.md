@@ -316,3 +316,26 @@ I also updated my use of the Bugsnag API so that when FeedException or IOExcepti
                 report.getError().getMetaData().addToTab("user", "feedURL", feedUrl);
             }
         });
+
+**2020-01-01** - A New Build for a New Year
+
+Continue to run into issues where the URL of an RSS feed changes which means the app news to be recompiled and re-released. Such a pain. 
+
+Google also now requires that news apps are officially listed as news apps, with [the following extra requirements](https://support.google.com/googleplay/android-developer/answer/10286120?visit_id=637451065143926067-145298576&rd=3#news).
+
+Started by Firing up Android Studio and upgrade the IDE. After a bunch of prompted upgrades to gradle I tried to compile the app and received the following error:
+
+`This project uses AndroidX dependencies, but the 'android.useAndroidX' property is not enabled. Set this property to true in the gradle.properties file and retry.`
+
+Based on [some StackOverflow threads](https://stackoverflow.com/questions/60506895/android-studio-3-6-1-error-this-project-uses-androidx-dependencies) I tried adding the following to the `gradle.properties` file:
+
+```
+android.useAndroidX=true
+android.enableJetifier=true
+```
+
+Now the build fails with 8 linking errors, seemingly related to `appcompat-1.0.0` and the AndroidX switch enabled above.
+
+Another [StackoverFlow](https://stackoverflow.com/questions/23330816/error-package-android-support-v7-app-does-not-exist) lead me to [the AndroidX class migration guide](https://developer.android.com/jetpack/androidx/migrate/class-mappings) and I had to switch a bunch of `android.support.v7.app.` imports to `androidx.appcompat.app.`
+
+The app now seems to compile but I'm getting an APK signing error. Arg.
