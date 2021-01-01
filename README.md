@@ -338,4 +338,12 @@ Now the build fails with 8 linking errors, seemingly related to `appcompat-1.0.0
 
 Another [StackoverFlow](https://stackoverflow.com/questions/23330816/error-package-android-support-v7-app-does-not-exist) lead me to [the AndroidX class migration guide](https://developer.android.com/jetpack/androidx/migrate/class-mappings) and I had to switch a bunch of `android.support.v7.app.` imports to `androidx.appcompat.app.`
 
-The app now seems to compile but I'm getting an APK signing error. Arg.
+The app now seems to compile but I'm getting an APK signing error. Arg. It's beginning to feel like I'll never remember the signing details! Here's how you test a keystore password:
+
+`keytool -list -keystore my-release-key.keystore -storepass passwordToTest`
+
+I can't automatically run debug builds on the emulator from Android studio. When I try to run on the emulator I get the error:
+
+`Installation error: INSTALL_PARSE_FAILED_NO_CERTIFICATES`
+
+That said, I can manually create signed APKs and app bundles from `Build -> Generate Signed Bundle / APK` and then I can drag the debug APK to the emulator to install. I'm going to try to do a release from a manually generated app bundle.
