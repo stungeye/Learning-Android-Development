@@ -346,4 +346,14 @@ I can't automatically run debug builds on the emulator from Android studio. When
 
 `Installation error: INSTALL_PARSE_FAILED_NO_CERTIFICATES`
 
-That said, I can manually create signed APKs and app bundles from `Build -> Generate Signed Bundle / APK` and then I can drag the debug APK to the emulator to install. I'm going to try to do a release from a manually generated app bundle.
+That said, I can manually create signed APKs and app bundles from `Build -> Generate Signed Bundle / APK` and then I can drag the debug APK to the emulator to install. I'm going to try to do a release from a manually generated app bundle. The latest release process:
+
+* Login to the Play Developer Console and open app.
+* Under "Releases" on the sidemenu select "Production"
+* Click the "Create New Release" button.
+* Drag and drop the manually generated signed app bundle `.aab` file.
+* Enter in release notes. Save, review, and release to 100% of all devices.
+
+Arg and double arg! I can't upload the bundle 'cause Google now requires you to target API level 29 and I'm currently targetting API level 27! 
+
+Okay. Switched to API 29. Only major issue was that the About Page `WebView` was rendering blank. Had to [encode the HTML for the webview as base64](https://stackoverflow.com/a/54546482). Let's see how this release goes. Fingers crossed.
