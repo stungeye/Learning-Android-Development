@@ -367,3 +367,8 @@ But... Then I realized that the fixes I pushed live yesterday actually broken a 
 Google has [a new News App policy](https://support.google.com/googleplay/android-developer/answer/10286120?visit_id=637452062253266117-331197188&rd=3#news), so I also updated the app to meet the requirements of this policy. This was mainly done by linking to all official websites for aggregated news sources on the about page. Provided the following information to Google when flagging the app as a News App:
 
 > This app is an unmonetized aggregator for news organizations in Winnipeg, Manitoba, Canada. The app is transparent about the publishing source of all news articles. The app's about page links to the websites of aggregated news sources. These websites provide contact and ownership information for all aggregated news orgs. The app and aggregated news sources have been verified by the developer to comply with the requirements, MUSTs, and MUST NOTs of the Google Play News policy as of Jan 1, 2021.
+
+**To Do:**
+
+* Store the list of all news sources and feed URLs on a server so that URLs can be updated without having to update the app.
+* Add thumbnail images and story blurbs for all articles if available.
