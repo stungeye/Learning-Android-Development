@@ -357,3 +357,13 @@ That said, I can manually create signed APKs and app bundles from `Build -> Gene
 Arg and double arg! I can't upload the bundle 'cause Google now requires you to target API level 29 and I'm currently targetting API level 27! 
 
 Okay. Switched to API 29. Only major issue was that the About Page `WebView` was rendering blank. Had to [encode the HTML for the webview as base64](https://stackoverflow.com/a/54546482). Let's see how this release goes. Fingers crossed.
+
+**2020-01-02** - A New Year A New Regression :)
+
+Fixed the issue with the emulator. Turns out the build variant was stuck on debug. Switching back and forth between release and debug with a few clean and rebuld cycles fixed the problem. Yay.
+
+But... Then I realized that the fixes I pushed live yesterday actually broken a number of the feeds that had previously been working. Turns out the Android API V29 only allows https traffic by default, but that all of the feeds that rely on [Feedburner](https://feedburner.google.com) use insecure http links internally, even if you load the feeds using https. [Android can be forced to load clear text](https://stackoverflow.com/questions/45940861/android-8-cleartext-http-traffic-not-permitted) but since all the affected sites actually support https, I just put a kludge in place that re-writes all http URLS to https. I've pushed this update live. 
+
+Google has [a new News App policy](https://support.google.com/googleplay/android-developer/answer/10286120?visit_id=637452062253266117-331197188&rd=3#news), so I also updated the app to meet the requirements of this policy. This was mainly done by linking to all official websites for aggregated news sources on the about page. Provided the following information to Google when flagging the app as a News App:
+
+> This app is an unmonetized aggregator for news organizations in Winnipeg, Manitoba, Canada. The app is transparent about the publishing source of all news articles. The app's about page links to the websites of aggregated news sources. These websites provide contact and ownership information for all aggregated news orgs. The app and aggregated news sources have been verified by the developer to comply with the requirements, MUSTs, and MUST NOTs of the Google Play News policy as of Jan 1, 2021.
