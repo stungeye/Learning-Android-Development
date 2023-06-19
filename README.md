@@ -372,3 +372,39 @@ Google has [a new News App policy](https://support.google.com/googleplay/android
 
 * Store the list of all news sources and feed URLs on a server so that URLs can be updated without having to update the app.
 * Add thumbnail images and story blurbs for all articles if available.
+
+**2023-06-19** Feed Fixer - API Update - Gradle Update
+
+Started by upgrading Android Studio to the latest version and installing a new emulator VM (Pixel 6 Pro / API V34). After this I was prompted to upgrade gradle and the auto-upgrade seemed to go smoothly. When trying to build the project I'm told that the API version the app is targetting (v30) is not supported. Okay, let's try again with V33 ([now minimum required](https://developer.android.com/google/play/requirements/target-sdk)) in `app\bundle.gradle`:
+
+```
+defaultConfig {
+        applicationId "com.stungeye.winnipegnews"
+        minSdkVersion 15
+        compileSdkVersion 34
+        targetSdkVersion 34
+        versionCode 10013
+        versionName "1.0.13"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+```
+
+There is now one error on compile:
+
+```
+android:exported needs to be explicitly specified for element <activity#com.stungeye.winnipegnews.MainActivity>. Apps targeting Android 12 and higher are required to specify an explicit value for `android:exported` when the corresponding component has an intent filter defined. See https://developer.android.com/guide/topics/manifest/activity-element#exported for details.
+```
+
+To fix this I had to edit the `AndroidManifest.xml` and add this attribute to the main activity:
+
+```
+<activity android:name=".MainActivity" android:exported="true">
+    <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+</activity>
+```
+
+The app now builds and works in the emulator. Actually it only works in the Pixel 5 emulator. With the Pixel 6 Pro emulator it kept hanging, but I think that's more of an emulator issue than anything. I was also able to build a signed apk, upload that to a web server, and download/install to my phone. Works on my phone too. Can I remember how to push a release? I'll reference above!
+
